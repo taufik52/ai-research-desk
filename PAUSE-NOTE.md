@@ -230,3 +230,27 @@ parent di sesi resume ini.
    sebelum **1 Des 2026 05:00 WIB** (lihat `CIPOZ-STEPS.md` Bagian B–E).
 3. Jalur cloud Firebase + Gemini Nano on-device BELUM PERNAH jalan live —
    baru bisa diverifikasi setelah blocker #1 selesai.
+
+## 10. RESUME 13 Nov 2026 ~18:50 WIB (agen program, atas perintah parent "majukan sejauh mungkin tanpa Cipoz")
+
+- **Deadline terverifikasi segar** via pencarian web 13 Nov: tutup 30 Nov
+  2026 14:00 PT = 1 Des 2026 05:00 WIB, hadiah $30.000 — sesuai dokumen.
+- **Bug route badge ditemukan + diperbaiki:** `generateTextStream` tidak
+  mengembalikan `route`, padahal UI selalu streaming — badge akan tampil
+  "—" setiap selesai tugas. Perbaikan: helper `expectedRoute(mode)` dipakai
+  kedua fungsi generate di `src/firebase.js`. Bukti di TEST-REPORT.md §1a.
+- **`npm test` segar 13 Nov ~18:50 WIB: 18/18 PASS** (cek baru ke-18:
+  `generateTextStream` mengembalikan `route`); `npm run build` lolos
+  (165 ms, 20 modules). `.env`/`.env.example` terverifikasi kosong
+  (bukan berisi key) — tidak ada secret di repo.
+- **Baru:** `firebase.json` siap deploy (public `dist`, SPA rewrite,
+  no-cache `index.html`, JSON valid); `VIDEO-SCRIPT.md` (naskah + shot
+  list video <3 mnt, Bahasa Inggris, ~2:45); DEPLOY.md/CIPOZ-STEPS.md
+  diperbarui.
+- **Repo lokal siap push:** `git init -b main` + commit `2635e77`
+  ("AI Research Desk — #BuildHybridAI 2026", 21 file, author
+  taufik420 <capedong6@gmail.com> — konvensi repo Cipoz lain di workspace).
+  Tanpa remote — remote + push hanya setelah Cipoz membuat repo GitHub
+  kosong. TIDAK ada repo GitHub dibuat, TIDAK ada login, TIDAK ada submit.
+- **Sisa (tetap Cipoz-only):** Firebase project + `.env`, repo GitHub
+  publik (lalu push), deploy Hosting, video demo, submit Devpost.

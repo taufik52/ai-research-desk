@@ -79,10 +79,12 @@
     Cipoz). Repository name: `ai-research-desk`. Pilih **Public**.
     JANGAN centang "Add a README" / ".gitignore" / "license" (semuanya
     sudah ada di folder lokal).
-11. Push folder lokal ke repo baru itu (minta agen menjalankan
-    perintahnya — agen sudah punya akses git lokal; yang Cipoz lakukan
-    hanya membuat repo kosong di atas):
-    `git init && git add . && git commit -m "AI Research Desk — #BuildHybridAI 2026" && git remote add origin <URL repo> && git push -u origin main`
+11. Push folder lokal ke repo baru itu — repo lokal SUDAH di-init + di-commit
+    agen 13 Nov 2026 (commit `2635e77`, 21 file, tanpa `.env`/secret).
+    Yang Cipoz lakukan hanya membuat repo kosong di atas, lalu minta agen
+    menjalankan:
+    `git remote add origin <URL repo> && git push -u origin main`
+    (JANGAN `git init` / `git add` / `git commit` lagi — sudah selesai.)
 12. Cek di GitHub: file `LICENSE` terlihat, README tampil, dan pastikan
     **tidak ada file `.env`** di repo (cek tab file — kalau ada,
     hapus dari git dan beri tahu agen).
