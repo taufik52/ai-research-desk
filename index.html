@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Research Desk — Hybrid AI with Firebase AI Logic</title>
+    <meta
+      name="description"
+      content="Paste research notes, get a summary and answers. Runs on-device with Gemini Nano when available, falls back to the cloud — all through Firebase AI Logic."
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>AI Research Desk</h1>
+        <p class="tagline">Your notes in. A brief and answers out. On-device first, cloud when needed.</p>
+      </div>
+      <div id="provider-badge" class="badge">Checking provider…</div>
+    </header>
+
+    <div id="setup-banner" class="banner hidden"></div>
+
+    <main class="layout">
+      <section class="panel notes-panel">
+        <h2>Research notes</h2>
+        <p class="hint">Paste notes, articles, or meeting summaries. The AI only uses what is here.</p>
+        <label>
+          Title
+          <input id="note-title" type="text" placeholder="e.g. Firebase AI Logic docs" maxlength="120" />
+        </label>
+        <label>
+          Note
+          <textarea id="note-body" rows="5" placeholder="Paste your research note here…"></textarea>
+        </label>
+        <div class="row">
+          <button id="add-note" class="btn primary">Add note</button>
+          <button id="load-sample" class="btn">Reload sample notes</button>
+          <button id="clear-notes" class="btn danger">Clear all</button>
+        </div>
+        <ul id="notes-list" class="notes-list"></ul>
+      </section>
+
+      <section class="panel ask-panel">
+        <h2>Ask the desk</h2>
+
+        <div class="field">
+          <label for="mode-select">Inference mode</label>
+          <select id="mode-select">
+            <option value="auto">Auto — on-device first, cloud fallback (PREFER_ON_DEVICE)</option>
+            <option value="on-device">On-device only (ONLY_ON_DEVICE)</option>
+            <option value="cloud-first">Cloud first, on-device fallback (PREFER_IN_CLOUD)</option>
+            <option value="cloud-only">Cloud only (ONLY_IN_CLOUD)</option>
+          </select>
+          <p class="hint" id="nano-status">On-device model status: checking…</p>
+        </div>
+
+        <div class="row">
+          <button id="prepare-device" class="btn">Prepare on-device model</button>
+          <span id="device-progress" class="hint"></span>
+        </div>
+
+        <div class="row">
+          <button id="btn-summarize" class="btn primary">Summarize notes</button>
+          <button id="btn-keypoints" class="btn primary">Key takeaways</button>
+        </div>
+
+        <label>
+          Ask a question about your notes
+          <input id="question" type="text" placeholder="e.g. When does the hackathon close?" maxlength="300" />
+        </label>
+        <div class="row">
+          <button id="btn-ask" class="btn primary">Ask</button>
+        </div>
+
+        <div class="output-block">
+          <div class="output-head">
+            <h3>Answer</h3>
+            <span id="route-badge" class="badge small">—</span>
+          </div>
+          <div id="output" class="output">Run a task to see the result here.</div>
+          <p id="output-meta" class="hint"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Built with Firebase AI Logic hybrid inference (Gemini Nano on-device + Gemini cloud fallback).
+        <span id="footer-mode"></span>
+        See <code>README.md</code> for setup.
+      </p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
