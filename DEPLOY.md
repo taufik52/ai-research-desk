@@ -49,7 +49,7 @@ npm run dev   # http://localhost:5173
 ```
 
 - Click **Summarize notes** with the sample notes. The route badge should show
-  the cloud model (`gemini-2.5-flash-lite`) on a machine without Gemini Nano.
+  the cloud model (`gemini-3.5-flash-lite`) on a machine without Gemini Nano.
 - In Chrome 139+ desktop, enable
   `chrome://flags/#prompt-api-for-gemini-nano-multimodal-input`, click
   **Prepare on-device model**, wait for the download, then summarize again —

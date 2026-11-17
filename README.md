@@ -47,7 +47,7 @@ This distinction is the most important thing in this repo. Be honest about it.
 
 | Piece | Status | File(s) |
 |---|---|---|
-| Firebase AI Logic SDK integration (real code, not a mock) | ✅ **Real.** `getAI` + `GoogleAIBackend`, `getGenerativeModel({ mode: InferenceMode.PREFER_ON_DEVICE, inCloudParams: { model: "gemini-2.5-flash-lite" } })`, `initializeDeviceModel()`, `generateContent()` / `generateContentStream()`. Verified against the installed SDK (firebase 13.3.0) — imports resolve and model objects construct. Follows the official docs verbatim: https://firebase.google.com/docs/ai-logic/hybrid-on-device-inference | `src/firebase.js` |
+| Firebase AI Logic SDK integration (real code, not a mock) | ✅ **Real.** `getAI` + `GoogleAIBackend`, `getGenerativeModel({ mode: InferenceMode.PREFER_ON_DEVICE, inCloudParams: { model: "gemini-3.5-flash-lite" } })`, `initializeDeviceModel()`, `generateContent()` / `generateContentStream()`. Verified against the installed SDK (firebase 13.3.0) — imports resolve and model objects construct. Follows the official docs verbatim: https://firebase.google.com/docs/ai-logic/hybrid-on-device-inference | `src/firebase.js` |
 | App Check (required by AI Logic) | ✅ **Real code**, needs user setup: reCAPTCHA v3 site key in `.env`, debug token registered in the console for localhost | `src/firebase.js` (`initFirebase`) |
 | Firebase project / web app config | ❌ **Not created.** No account or project was created by the agent. `.env` is empty by design. Creating the project is a step only the user (Cipoz) can do. | `.env` (see Setup) |
 | On-device Gemini Nano run | ⏳ **Not yet exercised.** Needs Chrome 139+ desktop with the Prompt API flag and the model downloaded. The VM has no such Chrome session. Code path is real; the run is unproven until tested in a real Chrome. | `src/firebase.js` (`initDeviceModel`) |
@@ -109,7 +109,7 @@ User clicks Summarize / Key takeaways / Ask
       (on-device inference supports single-turn text only — no chat sessions,
        so every feature is deliberately a single-turn generateContent call)
   → src/firebase.js generateText()/generateTextStream()
-      → getGenerativeModel(ai, { mode, inCloudParams: { model: "gemini-2.5-flash-lite" } })
+      → getGenerativeModel(ai, { mode, inCloudParams: { model: "gemini-3.5-flash-lite" } })
       → mode PREFER_ON_DEVICE: Gemini Nano if available, else cloud
       → mode ONLY_ON_DEVICE: Nano or throw   ·   PREFER_IN_CLOUD / ONLY_IN_CLOUD: cloud
 ```

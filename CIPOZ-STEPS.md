@@ -39,7 +39,7 @@
    - `VITE_FIREBASE_STORAGE_BUCKET=` ← storageBucket
    - `VITE_FIREBASE_MESSAGING_SENDER_ID=` ← messagingSenderId
    - `VITE_FIREBASE_APP_ID=` ← appId
-   - `VITE_CLOUD_MODEL=gemini-2.5-flash-lite` (sudah terisi, jangan diubah)
+   - `VITE_CLOUD_MODEL=gemini-3.5-flash-lite` (sudah terisi, jangan diubah)
    - `VITE_APPCHECK_DEBUG=true` (biarkan true untuk testing localhost)
    
    ⚠️ JANGAN pernah kirim isi `.env` ke siapa pun dan jangan commit —
@@ -60,7 +60,7 @@
    (Debug token diterima untuk submission hackathon.)
 8. **Verifikasi jalur cloud jalan:** di browser yang sama, klik
    **Summarize notes** (sample notes sudah ada). Jawaban harus muncul
-   dengan route badge `cloud (gemini-2.5-flash-lite)`. Lalu klik **Ask**,
+   dengan route badge `cloud (gemini-3.5-flash-lite)`. Lalu klik **Ask**,
    tanya mis. "When does the hackathon close?" — jawaban harus mengutip
    Note 2. Kalau muncul error App Check, ulangi langkah 7. Beri tahu agen
    hasilnya supaya dicatat di TEST-REPORT.md.

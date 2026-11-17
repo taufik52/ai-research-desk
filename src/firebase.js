@@ -26,7 +26,7 @@
  * was created by the agent.
  */
 import { initializeApp } from "firebase/app";
-import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
 import {
   getAI,
   getGenerativeModel,
@@ -41,7 +41,7 @@ export const FIREBASE_MODES = {
   CLOUD_ONLY: InferenceMode.ONLY_IN_CLOUD,
 };
 
-const CLOUD_MODEL = import.meta.env.VITE_CLOUD_MODEL || "gemini-2.5-flash-lite";
+const CLOUD_MODEL = import.meta.env.VITE_CLOUD_MODEL || "gemini-3.5-flash-lite";
 
 function readFirebaseConfig() {
   const env = import.meta.env;
@@ -115,18 +115,25 @@ export function initFirebase() {
 
   // App Check (enforced for AI Logic). Debug provider for localhost:
   // set self.FIREBASE_APPCHECK_DEBUG_TOKEN before initializing App Check.
-  // NOTE: the debug token flow still needs a real provider configured
-  // (reCAPTCHA v3 site key). If no site key is set, App Check is left
-  // uninitialized and AI Logic calls will fail with an App Check error —
-  // that is the honest signal that setup is incomplete. Add
-  // VITE_RECAPTCHA_SITE_KEY to .env (Firebase console > App Check) to fix.
+  // NOTE: provider HARUS ReCaptchaEnterpriseProvider — yang terdaftar di
+  // console adalah Fraud Defense (reCAPTCHA Enterprise). ReCaptchaV3Provider
+  // (klasik) memanggil endpoint exchangeRecaptchaV3Token dan server menolak
+  // dengan 400 "App not registered", karena registrasi yang ada itu Enterprise.
+  // Jika tidak ada site key, App Check dibiarkan uninitialized dan AI Logic
+  // akan gagal dengan App Check error — itu sinyal jujur bahwa setup belum
+  // lengkap. Tambah VITE_RECAPTCHA_SITE_KEY ke .env (Firebase console >
+  // App Check) untuk memperbaiki.
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
-  if (import.meta.env.VITE_APPCHECK_DEBUG === "true") {
+  // Debug provider HANYA untuk dev lokal (import.meta.env.DEV): di build
+  // production (hosted) debug token TIDAK boleh aktif, karena token debug
+  // per-origin itu tidak terdaftar di console -> App Check menolak request.
+  // Di hosted, provider yang dipakai adalah reCAPTCHA Enterprise (site key).
+  if (import.meta.env.DEV && import.meta.env.VITE_APPCHECK_DEBUG === "true") {
     self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
   }
   if (siteKey) {
     initializeAppCheck(app, {
-      provider: new ReCaptchaV3Provider(siteKey),
+      provider: new ReCaptchaEnterpriseProvider(siteKey),
       isTokenAutoRefreshEnabled: true,
     });
   } else {

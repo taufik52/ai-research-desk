@@ -96,7 +96,7 @@ const bundleText = bundleFiles.map((f) => readFileSync(f, "utf8")).join("\n");
 check("bundle imports firebase/ai (getAI)", bundleText.includes("getAI"));
 check("bundle contains hybrid mode PREFER_ON_DEVICE", bundleText.includes("prefer_on_device"));
 check("bundle contains initializeDeviceModel", bundleText.includes("initializeDeviceModel"));
-check("bundle contains cloud model gemini-2.5-flash-lite", bundleText.includes("gemini-2.5-flash-lite"));
+check("bundle contains cloud model gemini-3.5-flash-lite", bundleText.includes("gemini-3.5-flash-lite"));
 
 // --- 2b. Streaming path returns the route badge value -----------------------
 // main.js always streams (onChunk), so generateTextStream MUST return `route`

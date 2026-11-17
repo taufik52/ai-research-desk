@@ -48,7 +48,7 @@ model API is called anywhere in the production code path:
 - The app initializes the Gemini Developer API backend with
   `getAI(app, { backend: new GoogleAIBackend() })`.
 - It creates hybrid models with
-  `getGenerativeModel(ai, { mode: InferenceMode.PREFER_ON_DEVICE, inCloudParams: { model: "gemini-2.5-flash-lite" } })`.
+  `getGenerativeModel(ai, { mode: InferenceMode.PREFER_ON_DEVICE, inCloudParams: { model: "gemini-3.5-flash-lite" } })`.
 - Short tasks (summaries, takeaways) use `PREFER_ON_DEVICE`: they run on
   **Gemini Nano** in Chrome when the on-device model is available, and fall
   back to the cloud Gemini model automatically when it is not. Long or complex
@@ -118,10 +118,8 @@ Firebase AI Logic.
 
 ## Links (fill in before submitting)
 
-- **Code repository (public, Apache-2.0):** _TODO — create the public GitHub repo
-  and paste the URL here. The repo must be public with the LICENSE file visible._
-- **Hosted project URL:** _TODO — Firebase Hosting URL after `firebase deploy`
-  (see DEPLOY.md)._
+- **Code repository (public, Apache-2.0):** https://github.com/taufik52/ai-research-desk (public, LICENSE Apache-2.0 in repo root; latest code pushed 18 Nov 2026, includes App Check Enterprise fix + gemini-3.5-flash-lite).
+- **Hosted project URL:** https://ai-research-desk-c60c1.web.app (deployed 17 Nov 2026 ~23:55 WIB via `firebase deploy --only hosting`; verified live: Summarize → `cloud (gemini-3.5-flash-lite)`, 17.2s, 1.072 chars).
 - **Demo video (YouTube, < 3 min, English):** _TODO — record after the Firebase
   path is live; must show the app running in Chrome, including the on-device
   route badge and a cloud fallback._
@@ -159,7 +157,7 @@ Firebase AI Logic.
       removed, env flag deleted; `npm run build` passes and `npm test`
       asserts no non-Firebase inference path in the bundle).
 - [ ] Firebase project created (user step) and `.env` filled with the real
-      web app config; App Check configured (reCAPTCHA v3 key).
+      web app config; App Check configured (reCAPTCHA Enterprise key (Fraud Defense)).
 - [ ] Cloud path verified live: Summarize + Ask work in Chrome against the
       real Firebase project (record the result in TEST-REPORT.md).
 - [ ] On-device path verified live in Chrome 139+ (Gemini Nano download +

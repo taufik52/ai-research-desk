@@ -9,7 +9,7 @@
 ## Setup before recording
 
 - Chrome desktop 139+, window maximized, bookmarks bar hidden.
-- Open the hosted URL (e.g. `https://ai-research-desk.web.app`).
+- Open the hosted URL (`https://ai-research-desk-c60c1.web.app`).
 - The app ships with 2 sample notes — do NOT clear them.
 - If the machine supports Gemini Nano: enable
   `chrome://flags/#prompt-api-for-gemini-nano-multimodal-input` → Enabled,
