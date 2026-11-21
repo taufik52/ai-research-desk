@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai-research-desk-c60c1.web.app/sitemap.xml
